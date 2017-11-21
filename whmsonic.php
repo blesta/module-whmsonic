@@ -13,7 +13,7 @@ class Whmsonic extends Module
     /**
      * @var string The version of this module
      */
-    private static $version = '1.0.1';
+    private static $version = '1.1.0';
     /**
      * @var string The authors of this module
      */
@@ -728,10 +728,35 @@ class Whmsonic extends Module
      *
      * @param stdClass $package A stdClass object representing the selected package
      * @param array $vars An array of user supplied info to satisfy the request
-     * @param bool $edit True if this is an edit, false otherwise
      * @return bool True if the service validates, false otherwise. Sets Input errors when false.
      */
-    public function serviceValidation($package, array $vars = null, $edit = false)
+    public function validateService($package, array $vars = null)
+    {
+        $this->Input->setRules($this->getServiceRules($vars));
+        return $this->Input->validates($vars);
+    }
+
+    /**
+     * Attempts to validate an existing service against a set of service info updates. Sets Input errors on failure.
+     *
+     * @param stdClass $service A stdClass object representing the service to validate for editing
+     * @param array $vars An array of user-supplied info to satisfy the request
+     * @return bool True if the service update validates or false otherwise. Sets Input errors when false.
+     */
+    public function validateServiceEdit($service, array $vars = null)
+    {
+        $this->Input->setRules($this->getServiceRules($vars, true));
+        return $this->Input->validates($vars);
+    }
+
+    /**
+     * Returns the rule set for adding/editing a service
+     *
+     * @param array $vars A list of input vars
+     * @param bool $edit True to get the edit rules, false for the add rules
+     * @return array Service rules
+     */
+    private function getServiceRules(array $vars = null, $edit = false)
     {
         $rules = [
             'username' => [
@@ -749,9 +774,8 @@ class Whmsonic extends Module
                 unset($rules['username']);
             }
         }
-        $this->Input->setRules($rules);
 
-        return $this->Input->validates($vars);
+        return $rules;
     }
 
     /**
@@ -815,7 +839,7 @@ class Whmsonic extends Module
         $params['bandwidth'] = $package->meta->bandwidth;
         $params['listeners'] = $package->meta->listeners;
 
-        $this->serviceValidation($package, $params);
+        $this->validateService($package, $params);
 
         if ($this->Input->errors()) {
             return;
@@ -895,7 +919,7 @@ class Whmsonic extends Module
      */
     public function editService($package, $service, array $vars = null, $parent_package = null, $parent_service = null)
     {
-        $this->serviceValidation($package, $vars, true);
+        $this->validateServiceEdit($service, $vars);
 
         if ($this->Input->errors()) {
             return;
