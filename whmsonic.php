@@ -13,7 +13,7 @@ class Whmsonic extends Module
     /**
      * @var string The version of this module
      */
-    private static $version = '1.1.0';
+    private static $version = '1.1.1';
     /**
      * @var string The authors of this module
      */
