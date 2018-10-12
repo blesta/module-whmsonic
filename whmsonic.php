@@ -761,6 +761,7 @@ class Whmsonic extends Module
         $rules = [
             'username' => [
                 'empty' => [
+                    'if_set' => true,
                     'rule' => 'isEmpty',
                     'negate' => true,
                     'message' => Language::_('Whmsonic.!error.user_name.empty', true)
