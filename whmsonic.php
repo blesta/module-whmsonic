@@ -13,7 +13,7 @@ class Whmsonic extends Module
     /**
      * @var string The version of this module
      */
-    private static $version = '1.1.1';
+    private static $version = '1.2.0';
     /**
      * @var string The authors of this module
      */
@@ -522,6 +522,8 @@ class Whmsonic extends Module
 
         // Validate module row
         if ($this->Input->validates($vars)) {
+            $vars['ip_address'] = strtolower($vars['ip_address']);
+
             // Build the meta data for this row
             $meta = [];
             foreach ($vars as $key => $value) {
@@ -564,6 +566,8 @@ class Whmsonic extends Module
 
         // Validate module row
         if ($this->Input->validates($vars)) {
+            $vars['ip_address'] = strtolower($vars['ip_address']);
+
             // Build the meta data for this row
             $meta = [];
             foreach ($vars as $key => $value) {
@@ -1301,7 +1305,7 @@ class Whmsonic extends Module
 
         return $this->Input->matches(
             $host_name,
-            '/^([a-z0-9]|[a-z0-9][a-z0-9\-]{0,61}[a-z0-9])(\.([a-z0-9]|[a-z0-9][a-z0-9\-]{0,61}[a-z0-9]))+$/'
+            '/^([a-z0-9]|[a-z0-9][a-z0-9\-]{0,61}[a-z0-9])(\.([a-z0-9]|[a-z0-9][a-z0-9\-]{0,61}[a-z0-9]))+$/i'
         );
     }
 
