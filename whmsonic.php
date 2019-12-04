@@ -1,4 +1,5 @@
 <?php
+use Blesta\Core\Util\Validate\Server;
 /**
  * Whmsonic Module.
  *
@@ -13,7 +14,7 @@ class Whmsonic extends Module
     /**
      * @var string The version of this module
      */
-    private static $version = '1.3.0';
+    private static $version = '1.4.0';
     /**
      * @var string The authors of this module
      */
@@ -1299,14 +1300,8 @@ class Whmsonic extends Module
      */
     public function validateHostName($host_name)
     {
-        if (strlen($host_name) > 255) {
-            return false;
-        }
-
-        return $this->Input->matches(
-            $host_name,
-            '/^([a-z0-9]|[a-z0-9][a-z0-9\-]{0,61}[a-z0-9])(\.([a-z0-9]|[a-z0-9][a-z0-9\-]{0,61}[a-z0-9]))+$/i'
-        );
+        $validator = new Server();
+        return $validator->isDomain($host_name) || $validator->isIp($host_name);
     }
 
     /**
