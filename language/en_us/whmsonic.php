@@ -4,6 +4,7 @@
  */
 // Basics
 $lang['Whmsonic.name'] = 'WHMSonic';
+$lang['Whmsonic.description'] = 'Allows you to offer shoutcast, icecast, streaming media hosting, AutoDJ, radio reseller from your Dedicated or VPS server.';
 $lang['Whmsonic.module_row'] = 'Server';
 $lang['Whmsonic.module_row_plural'] = 'Servers';
 $lang['Whmsonic.module_group'] = 'Server Group';
