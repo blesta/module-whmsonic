@@ -19,7 +19,7 @@
             </div>
         </div>
         <button class="btn btn-default pull-right">
-            <i class="fa fa-edit"></i> <?php $this->_('Whmsonic.submit');?>
+            <i class="fas fa-edit"></i> <?php $this->_('Whmsonic.submit');?>
         </button>
         <?php
         $this->Form->end();
