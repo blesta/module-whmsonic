@@ -1,10 +1,10 @@
-    <div class="row" id="change_password">
+    <div id="change_password">
         <h4><?php $this->_('Whmsonic.tab_client_actions.change_password');?></h4>
 
         <?php
         $this->Form->create($this->base_uri . 'services/manage/' . $this->Html->ifSet($service_id) . '/tabClientActions/');
         ?>
-        <div class="col-md-12">
+        <div class="w-100">
             <div class="form-group">
                 <?php
                 $this->Form->label($this->_('Whmsonic.tab_client_actions.password', true), 'password');
