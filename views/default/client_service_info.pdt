@@ -12,9 +12,9 @@
         <tbody>
         <tr>
             <td></td>
-            <td><?php $this->Html->_($module_row->meta->ip_address);?></td>
-            <td><?php $this->Html->_($service_fields->whmsonic_username);?></td>
-            <td><?php $this->Html->_($service_fields->whmsonic_password);?></td>
+            <td><?php (echo isset($module_row->meta->ip_address) ? $this->Html->safe($module_row->meta->ip_address) : null);?></td>
+            <td><?php (echo isset($service_fields->whmsonic_username) ? $this->Html->safe($service_fields->whmsonic_username) : null);?></td>
+            <td><?php (echo isset($service_fields->whmsonic_password) ? $this->Html->safe($service_fields->whmsonic_password) : null);?></td>
             <td>
                 <?php
                 $http = 'http://';
@@ -27,7 +27,7 @@
                 $this->Form->fieldHidden('user', (isset($service_fields->whmsonic_username) ? $service_fields->whmsonic_username : null));
                 $this->Form->fieldHidden('pass', (isset($service_fields->whmsonic_password) ? $service_fields->whmsonic_password : null));
                 ?>
-                <a id="login<?php $this->Html->_($service->id);?>"
+                <a id="login<?php (echo isset($service->id) ? $this->Html->safe($service->id) : null);?>"
                    href="#"><?php $this->_('Whmsonic.service_info.option_login');?></a>
                 <?php
                 $this->Form->end();
@@ -39,7 +39,7 @@
 </div>
 <script type="text/javascript">
     $(document).ready(function () {
-        $('#login<?php $this->Html->_($service->id);?>').click(function (e) {
+        $('#login<?php (echo isset($service->id) ? $this->Html->safe($service->id) : null);?>').click(function (e) {
             e.preventDefault();
 
             $(this).closest('form').submit();
