@@ -206,15 +206,16 @@ class WhmsonicApi
      */
     public function ftpAccountPermissions($ip_address, $username, $password)
     {
-        $conn_id = @ftp_connect($ip_address);
+        $result = 'no';
+        if (function_exists('ftp_connect')) {
+            $conn_id = @ftp_connect($ip_address);
 
-        if (@ftp_login($conn_id, $username, $password)) {
-            $result = 'yes';
-        } else {
-            $result = 'no';
+            if (@ftp_login($conn_id, $username, $password)) {
+                $result = 'yes';
+            }
+
+            ftp_close($conn_id);
         }
-
-        ftp_close($conn_id);
 
         return $result;
     }
