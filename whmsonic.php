@@ -143,7 +143,7 @@ class Whmsonic extends Module
             $fields->fieldSelect(
                 'meta[client_type]',
                 $this->getClientTypes(),
-                $this->Html->ifSet($vars->meta['client_type'])
+                (isset($vars->meta['client_type']) ? $vars->meta['client_type'] : null)
             ),
             ['id' => 'client_type']
         );
@@ -154,7 +154,7 @@ class Whmsonic extends Module
             $fields->fieldSelect(
                 'meta[bitrate]',
                 $this->getBitRates(),
-                $this->Html->ifSet($vars->meta['bitrate'])
+                (isset($vars->meta['bitrate']) ? $vars->meta['bitrate'] : null)
             ),
             ['id' => 'bitrate']
         );
@@ -162,21 +162,21 @@ class Whmsonic extends Module
 
         $hspace = $fields->label(Language::_('Whmsonic.package_fields.hspace', true), 'hspace');
         $hspace->attach(
-            $fields->fieldText('meta[hspace]', $this->Html->ifSet($vars->meta['hspace'])),
+            $fields->fieldText('meta[hspace]', (isset($vars->meta['hspace']) ? $vars->meta['hspace'] : null)),
             ['id' => 'hspace']
         );
         $fields->setField($hspace);
 
         $bandwidth = $fields->label(Language::_('Whmsonic.package_fields.bandwidth', true), 'bandwidth');
         $bandwidth->attach(
-            $fields->fieldText('meta[bandwidth]', $this->Html->ifSet($vars->meta['bandwidth'])),
+            $fields->fieldText('meta[bandwidth]', (isset($vars->meta['bandwidth']) ? $vars->meta['bandwidth'] : null)),
             ['id' => 'bandwidth']
         );
         $fields->setField($bandwidth);
 
         $listeners = $fields->label(Language::_('Whmsonic.package_fields.listeners', true), 'listeners');
         $listeners->attach(
-            $fields->fieldText('meta[listeners]', $this->Html->ifSet($vars->meta['listeners'])),
+            $fields->fieldText('meta[listeners]', (isset($vars->meta['listeners']) ? $vars->meta['listeners'] : null)),
             ['id' => 'listeners']
         );
         $fields->setField($listeners);
@@ -186,7 +186,7 @@ class Whmsonic extends Module
             $fields->fieldSelect(
                 'meta[autodj]',
                 $this->getAutoDJAccessOptions(),
-                $this->Html->ifSet($vars->meta['autodj'])
+                (isset($vars->meta['autodj']) ? $vars->meta['autodj'] : null)
             ),
             ['id' => 'autodj']
         );
@@ -497,7 +497,7 @@ class Whmsonic extends Module
             $username->attach(
                 $fields->fieldText(
                     'username',
-                    $this->Html->ifSet($vars->username),
+                    (isset($vars->username) ? $vars->username : null),
                     ['id' => 'username']
                 )
             );
@@ -530,7 +530,7 @@ class Whmsonic extends Module
             $username->attach(
                 $fields->fieldText(
                     'username',
-                    $this->Html->ifSet($vars->username),
+                    (isset($vars->username) ? $vars->username : null),
                     ['id' => 'username']
                 )
             );
@@ -562,7 +562,7 @@ class Whmsonic extends Module
         $username->attach(
             $fields->fieldText(
                 'username',
-                $this->Html->ifSet($vars->username),
+                (isset($vars->username) ? $vars->username : null),
                 ['id' => 'username']
             )
         );
@@ -1051,8 +1051,8 @@ class Whmsonic extends Module
         if (!empty($post)) {
             Loader::loadModels($this, ['Services']);
             $data = [
-                'password' => $this->Html->ifSet($post['password']),
-                'radio_password' => $this->Html->ifSet($post['radio_password'])
+                'password' => (isset($post['password']) ? $post['password'] : null),
+                'radio_password' => (isset($post['radio_password']) ? $post['radio_password'] : null)
             ];
             $this->Services->edit($service->id, $data);
 
