@@ -12,6 +12,8 @@ $lang['Whmsonic.tab_stats'] = 'Service Info';
 $lang['Whmsonic.tab_client_actions'] = 'Actions';
 $lang['Whmsonic.submit'] = 'Submit';
 
+$lang['Whmsonic.back_to_manage'] = 'Back';
+
 // Tab Stats
 $lang['Whmsonic.tab_stats.info_heading.field'] = 'Field';
 $lang['Whmsonic.tab_stats.info_heading.value'] = 'Value';
