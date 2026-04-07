@@ -33,20 +33,20 @@
                 $this->Form->create(
                     $this->Html->safe(
                         $http .
-                            (isset($module_row->meta->ip_address) ? $module_row->meta->ip_address : null) .
+                            ($module_row->meta->ip_address ?? null) .
                             ':' .
-                            (isset($port) ? $port : null) .
+                            ($port ?? null) .
                             '/login/',
                     ),
                     ['target' => '_blank'],
                 );
                 $this->Form->fieldHidden(
                     'user',
-                    isset($service_fields->whmsonic_username) ? $service_fields->whmsonic_username : null,
+                    $service_fields->whmsonic_username ?? null,
                 );
                 $this->Form->fieldHidden(
                     'pass',
-                    isset($service_fields->whmsonic_password) ? $service_fields->whmsonic_password : null,
+                    $service_fields->whmsonic_password ?? null,
                 );
                 ?>
                 <a id="_login<?php echo isset($service->id)

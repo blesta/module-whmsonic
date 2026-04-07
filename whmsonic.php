@@ -1377,6 +1377,7 @@ class Whmsonic extends Module
             return $success;
         } catch (\Throwable $e) {
             // Trap any errors encountered, could not validate connection
+            $this->log($ip_address, serialize(['error' => $e->getMessage()]), 'output', false);
         }
         return false;
     }
